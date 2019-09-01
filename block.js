@@ -15,8 +15,9 @@ class Block {
     return new this(GENESIS_DATA);
   }
   static mineBlock({ lastBlock, data }) {
-    let hash, timestamp;
+    
     const lastHash = lastBlock.hash;
+    let hash, timestamp;
     let { difficulty } = lastBlock;
     let nonce = 0;
 
@@ -41,6 +42,7 @@ class Block {
   }
 
   static adjustDifficulty({ originalBlock, timestamp }) {
+
     const { difficulty } = originalBlock;
 
     const difference = timestamp - originalBlock.timestamp;
