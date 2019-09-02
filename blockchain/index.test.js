@@ -1,6 +1,6 @@
-const Blockchain = require("./blockchain");
+const Blockchain = require(".");
 const Block = require("./block");
-const cryptoHash = require("./crypto-hash");
+const cryptoHash = require("../utilities/crypto-hash");
 
 describe("Blockchain", () => {
   let blockchain, newChain, originalChain;

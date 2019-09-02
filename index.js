@@ -1,8 +1,8 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const Blockchain = require('./blockchain');
-const PubSub = require('./pubsubR');
 const request = require('request');
+const Blockchain = require('./blockchain');
+const PubSub = require('./app/pubsubR');
 
 const app = express();
 const blockchain = new Blockchain();
