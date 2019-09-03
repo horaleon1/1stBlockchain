@@ -65,7 +65,6 @@ describe("Transaction", () => {
     });
     describe("and the transaction input signature is invalid", () => {
       it("returns false and logs an error", () => {
-
         transaction.outputMap[senderWallet.publicKey] = 999999;
 
         expect(Transaction.validTransaction(transaction)).toBe(false);
@@ -76,12 +75,40 @@ describe("Transaction", () => {
 
     describe("and the transaction input signature is invalid", () => {
       it("returns false and logs an error", () => {
-
         transaction.input.signature = new Wallet().sign("data");
 
         expect(Transaction.validTransaction(transaction)).toBe(false);
         expect(error).toHaveBeenCalled();
       });
+    });
+  });
+  describe("update()", () => {
+    let originalSignature, originalSenderOutput, nextRecipient, nextAmount;
+
+    beforeEach(() => {
+      originalSignature = transaction.input.signature;
+      originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
+      nextRecipient = 'next-recipient';
+      nextAmount = 50;
+
+      transaction.update({
+        senderWallet, recipient: nextRecipient, amount: nextAmount
+      });
+    });
+    it('outputs the amount to the next recipient', () => {
+      expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
+    });
+    it('subtracts the amount from the original sender output amount', () => {
+      expect(transaction.outputMap[senderWallet.publicKey])
+      .toEqual(originalSenderOutput - nextAmount);
+    });
+    it('maintains a total output that matches the input amount', () => {
+      expect(
+        Object.values(transaction.outputMap)
+        .reduce((total, outputAmount) => total + outputAmount)).toEqual(transaction.input.amount);
+    });
+    it('re-signs the transaction', () => {
+      expect(transaction.input.signature).not.toEqual(originalSignature);
     });
   });
 });
