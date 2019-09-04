@@ -73,7 +73,7 @@ const syncWithRootState = () => {
   );
   request(
     { url: `${ROOT_NODE_ADDRESS}/api/transacion-pool-map` },
-    (error, reponse, body) => {
+    (error, response, body) => {
       if (!error && response.statusCode === 200) {
         const rootTransactionPoolMap = JSON.parse(body);
 
