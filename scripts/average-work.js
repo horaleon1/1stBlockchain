@@ -1,3 +1,4 @@
+//calculate the average-block time creation 
 const Blockchain = require("../blockchain");
 
 const blockchain = new Blockchain();

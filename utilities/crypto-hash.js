@@ -1,5 +1,7 @@
 const crypto = require("crypto");
 
+//encryption 
+
 const cryptoHash = (...inputs) => {
   const hash = crypto.createHash("sha256");
 

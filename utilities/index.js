@@ -1,4 +1,4 @@
-const EC = require('elliptic').ec;
+const EC = require('elliptic').ec; //signing transactions
 const cryptoHash = require('./crypto-hash');
 
 const ec = new EC('secp256k1');
@@ -9,4 +9,7 @@ const verifySignature = ({ publicKey, data, signature }) => {
   return keyFromPublic.verify(cryptoHash(data), signature);
 };
 
-module.exports = { ec, verifySignature, cryptoHash };
+console.log(verifySignature());
+
+module.exports = { ec, verifySignature, cryptoHash }; 
+

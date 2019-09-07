@@ -6,13 +6,17 @@ class Wallet {
  constructor(){
    this.balance = STARTING_BALANCE;
 
+   //generate keys   
    this.keyPair = ec.genKeyPair();
 
+   //check with no private key (getPublic)
    this.publicKey = this.keyPair.getPublic().encode('hex');
  }
+  //check sign 
  sign(data){
    return this.keyPair.sign(cryptoHash(data));
  }
+
  createTransaction( {recipient, amount }) {
    if(amount > this.balance){
      throw new Error('Amount exceeds balance');

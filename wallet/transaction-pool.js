@@ -5,8 +5,6 @@ class TransactionPool{
 
     this.transactionMap = {};
 
-
-
     //TODO: me falta esta madre
   }
   setTransaction(transaction){

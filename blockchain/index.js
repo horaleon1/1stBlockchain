@@ -5,7 +5,7 @@ class Blockchain {
   constructor() {
     this.chain = [Block.genesis()];
   }
-
+//function to add blocks to the blockchain 
   addBlock({ data }) {
     const newBlock = Block.mineBlock({
       lastBlock: this.chain[this.chain.length - 1],
@@ -13,6 +13,7 @@ class Blockchain {
     });
     this.chain.push(newBlock);
   }
+  //
   replaceChain(chain) {
     if (chain.length <= this.chain.length) {
       console.error("The incoming chain must be longer");

@@ -8,14 +8,16 @@ class Block {
     this.lastHash = lastHash;
     this.hash = hash;
     this.data = data;
-    this.nonce = nonce;
-    this.difficulty = difficulty;
+    this.nonce = nonce; //unique request code
+    this.difficulty = difficulty; 
   }
+  // first block of the blockchain
   static genesis() {
     return new this(GENESIS_DATA);
   }
+  // creation of subsequent blocks 
   static mineBlock({ lastBlock, data }) {
-    
+  
     const lastHash = lastBlock.hash;
     let hash, timestamp;
     let { difficulty } = lastBlock;
@@ -41,6 +43,7 @@ class Block {
     });
   }
 
+  //increase or decrease the difficulty if the blocks are creating too fast or too slow.
   static adjustDifficulty({ originalBlock, timestamp }) {
 
     const { difficulty } = originalBlock;

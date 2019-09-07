@@ -2,13 +2,14 @@ const uuid = require("uuid/v1");
 const { verifySignature } = require("../utilities");
 const { REWARD_INPUT, MINING_REWARD } = require('../config');
 
+
 class Transaction {
   constructor({ senderWallet, recipient, amount, outputMap, input }) {
-    this.id = uuid();
+    this.id = uuid(); // create hash for transactions
     this.outputMap = outputMap || this.createOutputMap({ senderWallet, recipient, amount });
     this.input = input || this.createInput({ senderWallet, outputMap: this.outputMap });
   }
-
+  // create transactions that will load on the transaction-pool
   createOutputMap({ senderWallet, recipient, amount }) {
     const outputMap = {};
 
@@ -17,6 +18,7 @@ class Transaction {
 
     return outputMap;
   }
+
   createInput({ senderWallet, outputMap }) {
     return {
       timestamp: Date.now(),
