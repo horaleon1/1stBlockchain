@@ -33,7 +33,10 @@ class PubSub {
       this.blockchain(parsedMessage);
     } else if (channel === CHANNELS.TRANSACTION) {
       this.transactionPool.setTransaction(parsedMessage);
-    }
+    } 
+
+
+    ////Check else /////
   }
 
   subscribeToChannels() {
