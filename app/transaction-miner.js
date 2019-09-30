@@ -6,7 +6,7 @@ class TransactionMiner {
     this.pubsub = pubsub;
   }
   mineTransactions() {
-    //missing the transactions pools valid  transactions
+    //get the transactions pools valid  transactions
     //generate miner reward
     //add a block consisting of these transactions to the blockchain
     //broadcast the updated blockchain
